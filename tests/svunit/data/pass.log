@@ -1,0 +1,12 @@
+INFO:  [0][adder_ts]: RUNNING
+INFO:  [0][adder_ut]: RUNNING
+INFO:  [0][adder_ut]: adds::RUNNING
+INFO:  [0][adder_ut]: adds::PASSED
+INFO:  [0][adder_ut]: wraps::RUNNING
+INFO:  [10][adder_ut]: wraps::PASSED
+INFO:  [10][adder_ut]: PASSED (2 of 2 tests passing)
+
+INFO:  [10][adder_ts]: PASSED (1 of 1 testcases passing)
+
+INFO:  [10][testrunner]: PASSED (1 of 1 suites passing) [SVUnit Unreleased]
+- /x/testrunner.sv:9: Verilog $finish

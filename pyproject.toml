@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dv-flow-libhdltest"
+version = "0.0.1"
+dependencies = [
+    "dv-flow-mgr",
+    "dv-flow-libhdlsim",
+]
+authors = [
+    {name = "Matthew Ballance", email = "matt.ballance@gmail.com"},
+]
+description = "dv-flow tasks for HDL test frameworks (SVUnit) on any hdlsim simulator"
+license = {file = "LICENSE"}
+
+[project.entry-points."dv_flow.mgr"]
+libhdltest = "dv_flow.libhdltest.__ext__"
+
+[tool.setuptools]
+include-package-data = true
+package-dir = {"" = "src"}
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"dv_flow.libhdltest" = ["**/flow.dv"]
+
+[tool.pytest.ini_options]
+markers = [
+    "sim: needs Verilator and SVUnit",
+]

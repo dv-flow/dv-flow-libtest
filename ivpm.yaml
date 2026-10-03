@@ -1,0 +1,35 @@
+package:
+  name: dv-flow-libhdltest
+
+  dep-sets:
+  - name: default-dev
+    deps:
+    - name: dv-flow-mgr
+      url: https://github.com/dv-flow/dv-flow-mgr.git
+    - name: dv-flow-libhdlsim
+      url: https://github.com/dv-flow/dv-flow-libhdlsim.git
+    - name: pytest-dfm
+      url: https://github.com/dv-flow/pytest-dfm.git
+    - name: pytest
+      src: pypi
+    # SVUnit, pinned. hdltest.svunit.Lib finds it at $IVPM_PACKAGES/svunit
+    # when neither its `install` parameter nor $SVUNIT_INSTALL is set.
+    - name: svunit
+      url: https://github.com/svunit/svunit.git
+      tag: v3.38.1
+      type: raw
+    - name: verilator
+      url: https://github.com/edapack/verilator-bin
+      src: gh-rls
+      cache: true
+
+  - name: default
+    deps:
+    - name: dv-flow-mgr
+      url: https://github.com/dv-flow/dv-flow-mgr.git
+    - name: dv-flow-libhdlsim
+      url: https://github.com/dv-flow/dv-flow-libhdlsim.git
+    - name: svunit
+      url: https://github.com/svunit/svunit.git
+      tag: v3.38.1
+      type: raw

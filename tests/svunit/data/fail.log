@@ -1,0 +1,12 @@
+INFO:  [0][adder_ts]: RUNNING
+INFO:  [0][adder_ut]: RUNNING
+INFO:  [0][adder_ut]: adds::RUNNING
+INFO:  [0][adder_ut]: adds::PASSED
+INFO:  [0][adder_ut]: wraps::RUNNING
+ERROR: [10][adder_ut]: fail_unless_equal: (adder_pkg::add(8'd255, 8'd1)) !== (8'd7) (at /src/adder_unit_test.sv line:21)
+INFO:  [10][adder_ut]: wraps::FAILED
+INFO:  [10][adder_ut]: FAILED (1 of 2 tests passing)
+
+INFO:  [10][adder_ts]: FAILED (0 of 1 testcases passing)
+
+INFO:  [10][testrunner]: FAILED (0 of 1 suites passing) [SVUnit Unreleased]

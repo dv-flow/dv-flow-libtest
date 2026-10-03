@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://dv-flow.github.io/flow.dv.schema.json
+package:
+  name: hdltest
+  desc: HDL test frameworks as dv-flow tasks -- one sub-package per framework
+  doc: |
+    Each sub-package runs one HDL unit-test framework on top of `hdlsim`: it
+    supplies the framework's sources, generates whatever glue the framework's
+    own scripts would, and turns the simulation log into an `hdlsim.TestResult`.
+    Compiling and running are left to `hdlsim.<sim>.SimImage` and `SimRun`, so
+    a framework works on every simulator hdlsim supports, and results roll up
+    with `hdlsim.SimSuiteReport` like any other test.
+
+    * `hdltest.svunit` -- SVUnit.

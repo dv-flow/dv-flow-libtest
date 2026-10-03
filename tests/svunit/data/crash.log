@@ -1,0 +1,6 @@
+INFO:  [0][adder_ts]: RUNNING
+INFO:  [0][adder_ut]: RUNNING
+INFO:  [0][adder_ut]: adds::RUNNING
+INFO:  [0][adder_ut]: adds::PASSED
+INFO:  [0][adder_ut]: wraps::RUNNING
+INFO:  [10][adder_ut]: wraps::PASSED
