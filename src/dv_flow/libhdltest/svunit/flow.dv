@@ -109,6 +109,13 @@ package:
       Set the simulator's top to `top` (`testrunner` by default). The
       generated code matches what SVUnit's `create_testsuite.pl` and
       `create_testrunner.pl` write, minus the UVM and self-registration hooks.
+
+      **harness** lists modules (no ports) that the test runner instantiates
+      beside the suites: a test bench the unit tests share, such as the
+      clock, the design and its transactors. The unit tests reach it through
+      a package or by hierarchical name. Swapping the file that defines a
+      harness module swaps the bench without touching a test: for example,
+      the same tests against a model and against RTL.
     consumes:
     - filetype: svunitTest
     with:
@@ -116,6 +123,10 @@ package:
         doc: Name of the generated test-runner module (the simulation top)
         type: str
         value: testrunner
+      harness:
+        doc: Modules to instantiate in the test runner, beside the suites
+        type: list
+        value: []
     shell: pytask
     run: dv_flow.libhdltest.svunit.runner.TestRunner
 

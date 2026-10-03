@@ -92,6 +92,13 @@ def test_generated_suite_and_runner_match_svunit_shape():
     assert tr.startswith("module testrunner;")
     assert "svunit_tr.add_testsuite(t_tests_ts.svunit_ts);" in tr
     assert "$finish();" in tr
+    assert "u_" not in tr
+
+
+def test_harness_modules_are_instantiated_in_the_runner():
+    tr = runner.testrunner_sv("testrunner", [("s_testsuite", "s_ts")], ["bench_harness"])
+    assert "  bench_harness u_bench_harness();" in tr
+    assert tr.index("u_bench_harness") < tr.index("s_testsuite s_ts")
 
 
 def test_sv_ident():

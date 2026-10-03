@@ -56,14 +56,16 @@ def testsuite_sv(module: str, name: str, tests) -> str:
     return "\n".join(out)
 
 
-def testrunner_sv(module: str, suites) -> str:
-    """`suites` is a list of (module, instance)."""
+def testrunner_sv(module: str, suites, harness=()) -> str:
+    """`suites` is a list of (module, instance); `harness` lists modules to
+    instantiate beside them (a test bench the unit tests share)."""
     out = [f"module {module};",
            "  import svunit_pkg::svunit_testrunner;",
            "",
            f"  string name = \"{module}\";",
            "  svunit_testrunner svunit_tr;",
            ""]
+    out += [f"  {h} u_{h}();" for h in harness]
     out += [f"  {m} {i}();" for m, i in suites]
     out += ["",
             "  initial begin",
@@ -136,7 +138,8 @@ async def TestRunner(ctxt, input) -> TaskDataResult:
                 "declaring `module <name>_unit_test`"))
         return TaskDataResult(status=1, output=[])
 
-    generated.append((f"{top}.sv", testrunner_sv(top, suites)))
+    harness = [h for h in (input.params.harness or []) if h]
+    generated.append((f"{top}.sv", testrunner_sv(top, suites, harness)))
     changed = bool(input.changed)
     for name, text in generated:
         changed |= _write(os.path.join(rundir, name), text)
