@@ -55,14 +55,15 @@ def find_svunit(param: str, env, root_pkgdir: str):
         "add svunit to the project's ivpm.yaml. Looked in: " + ", ".join(tried))
 
 
-# Verilator 5.050 and 5.052 (and 5.049-devel; 5.046 and 5.041 are fine) reject
+# Verilator v5.048 onwards (5.050, 5.052, 5.053 devel; v5.046 is fine) rejects
 # SVUnit's svunit_testsuite class: "Duplicate declaration of VARSCOPE
-# 'svunit_pkg.svunit_testsuite.unnamedblk1.i__Vloopsize'". Its
-# get_num_passing_testcases() and report() both loop `foreach
-# (list_of_testcases[i])`; renaming report()'s loop variable avoids it. (A
-# small class with the same two loops does not reproduce it, so the exact
-# trigger is not isolated.) The rename is behaviour-preserving on every
-# simulator.
+# 'svunit_pkg.svunit_testsuite.unnamedblk1.i__Vloopsize'". The in-class
+# get_num_passing_testcases() and the out-of-block report() both loop
+# `foreach (list_of_testcases[i])` with method calls in the body, and both
+# loops get a generated `i__Vloopsize` (Verilator be7d26c5b, likely) that
+# collide in the class scope. Renaming report()'s loop variable avoids it, and
+# changes no behaviour on any simulator. Reduced test case and report:
+# ~/projects/verilator/bug-reports/svunit-foreach-varscope.
 _FOREACH_FIX = (
     re.compile(r"foreach\s*\(\s*list_of_testcases\[i\]\s*\)(\s*)"
                r"list_of_testcases\[i\]\.report\(\);"),

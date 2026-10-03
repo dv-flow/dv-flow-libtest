@@ -74,7 +74,7 @@ package:
       `svunit_pkg.sv`, with `svunit_base` and `svunit_base/junit-xml` on the
       include path. The package doc says where SVUnit is looked for.
 
-      **verilator_compat** (on by default). Verilator 5.050 and 5.052 reject
+      **verilator_compat** (on by default). Verilator v5.048 and later reject
       SVUnit's `svunit_testsuite` class ("Duplicate declaration of VARSCOPE
       ... i__Vloopsize"). With this set, `Lib` stages a copy of `svunit_base`
       in its run directory with one `foreach` loop variable renamed. The

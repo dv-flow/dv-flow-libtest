@@ -59,7 +59,7 @@ search never quietly falls through to a different copy.
 
 ### Verilator
 
-Verilator 5.050 and 5.052 reject SVUnit's `svunit_testsuite` class with "Duplicate
+Verilator v5.048 and later (5.050, 5.052) reject SVUnit's `svunit_testsuite` class with "Duplicate
 declaration of VARSCOPE ... i__Vloopsize". Verilator 5.046 is fine. `Lib`'s
 `verilator_compat` option (on by default) stages a copy of `svunit_base` with the
 `foreach` loop variable in `report()` renamed, which changes no behaviour.
